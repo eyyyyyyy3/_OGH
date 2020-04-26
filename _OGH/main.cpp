@@ -133,9 +133,6 @@ HRESULT __stdcall Hooked_EndScene(IDirect3DDevice9* pDevice) // our hooked endsc
 
 
 		ImGui::Text("_OGH");
-		ImGui::Text("Tufan mag männer und abu auchh!!");
-		ImGui::SliderInt("VFOV SLIDER", &var.sd.VFOV, 60, 170, "%1.f");
-		ImGui::SliderInt("FOV SLIDER", &var.sd.FOV, 60, 360, "%1.f");
 
 		ImGui::End();
 
@@ -157,27 +154,20 @@ HRESULT __stdcall Hooked_Reset(IDirect3DDevice9* pDevice, D3DPRESENT_PARAMETERS*
 
 void __stdcall Hooked_OverrideView(ViewSetup* setup)
 {
+	//FOV
 	oOverrideView(clientMode, setup);
 
 }
 
 float __fastcall Hooked_GetViewModelFOV(void* ecx, void* edx)
 {
+	//VFOV
 	return oGetViewModelFOV(ecx);
 }
 
 void __stdcall Hooked_CreateMove(int sequence_number, float input_sample_frametime, bool active, bool& bSendPacket)
 {
 	oCreateMove(clientModeInterface, sequence_number, input_sample_frametime, active);
-	/*
-	//viewAngles = wo du aimst benutzung:aimbot
-	//cmd->viewAngles.Init(x,y,z);
-
-	//Dreht die camera benutzung:cooles james bond feature
-	//cmd->aimDirection(x, y, z);
-
-	//ändert die poolung der tastatur; wahrsscheindlich kann den spieler auch beweggen benutzung: walkbot
-	//cmd->move.Init(x, y, z);*/
 
 	cmd = g_Input->GetUserCmd(sequence_number);
 
@@ -190,10 +180,11 @@ void __stdcall Hooked_CreateMove(int sequence_number, float input_sample_frameti
 		return;
 
 	me = (BaseEntity*)entlist->GetClientEntity(eng->GetLocalPlayer());
-	//BHOP(cmd, baseEntity);
-	//TRIGGER(cmd, baseEntity);
-	//EDGE(cmd, baseEntity);
-	//STRAFE(cmd, baseEntity, cmd->viewangles);
+
+	//BHOP
+	//TRIGGER
+	//EDGE
+	//STRAFE
 
 
 	verified->m_cmd = *cmd;
@@ -225,16 +216,15 @@ void __stdcall Hooked_PaintTraverse(int VGUIPanel, bool ForceRepaint, bool Allow
 	if (!drawPanel)
 	{
 		const char* panelname = panel->GetName(VGUIPanel);
-		//FocusOverlayPanel
 		if (!strcmp(panelname, "MatSystemTopPanel"))
 			drawPanel = VGUIPanel;
 	}
 	else if (drawPanel == VGUIPanel)
 	{
 		g_pRender->DrawShadowText(var.w - var.w, var.h - var.h, ImColor(0, 255, 255, 255), 31, false, (char*)"_OGH");
-		//if (var.eng->IsConnected() && var.eng->IsInGame())
-		//VISUALS(baseEntity);
-		//SKYCHANGER();
+		
+		//VISUALS
+		//SKYCHANGER
 	}
 	oPaintTraverse(panel, VGUIPanel, ForceRepaint, AllowForce);
 
@@ -247,8 +237,6 @@ void __fastcall Hooked_LockCursor(Surface* thisptr, void* edx)
 		if (!var.men1)
 		{
 			surf->UnlockCursor();
-			/*inputsys->EnableInput(false);
-			inputsys->ResetInputState();*/
 			var.men1 = true;
 			var.men2 = true;
 			var.Menu = true;
@@ -261,7 +249,6 @@ void __fastcall Hooked_LockCursor(Surface* thisptr, void* edx)
 		if (var.men2)
 		{
 			oLockCursor(thisptr, edx);
-			//inputsys->EnableInput(true);
 			var.men1 = false;
 			var.men2 = false;
 			var.Menu = false;

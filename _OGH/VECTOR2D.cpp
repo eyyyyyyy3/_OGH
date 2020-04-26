@@ -16,9 +16,6 @@ Vector2D::Vector2D(vec_t* clr)
 	x = clr[0]; y = clr[1];
 }
 
-//-----------------------------------------------------------------------------
-// initialization
-//-----------------------------------------------------------------------------
 
 void Vector2D::Init(vec_t ix, vec_t iy)
 {
@@ -36,9 +33,6 @@ void Vector2DClear(Vector2D& a)
 	a.x = a.y = 0.0f;
 }
 
-//-----------------------------------------------------------------------------
-// assignment
-//-----------------------------------------------------------------------------
 
 Vector2D& Vector2D::operator=(const Vector2D& vOther)
 {
@@ -46,9 +40,6 @@ Vector2D& Vector2D::operator=(const Vector2D& vOther)
 	return *this;
 }
 
-//-----------------------------------------------------------------------------
-// Array access
-//-----------------------------------------------------------------------------
 
 vec_t& Vector2D::operator[](int i)
 {
@@ -60,10 +51,6 @@ vec_t Vector2D::operator[](int i) const
 	return ((vec_t*)this)[i];
 }
 
-//-----------------------------------------------------------------------------
-// Base address...
-//-----------------------------------------------------------------------------
-
 vec_t* Vector2D::Base()
 {
 	return (vec_t*)this;
@@ -74,18 +61,11 @@ vec_t const* Vector2D::Base() const
 	return (vec_t const*)this;
 }
 
-//-----------------------------------------------------------------------------
-// IsValid?
-//-----------------------------------------------------------------------------
 
 bool Vector2D::IsValid() const
 {
 	return !isinf(x) && !isinf(y);
 }
-
-//-----------------------------------------------------------------------------
-// comparison
-//-----------------------------------------------------------------------------
 
 bool Vector2D::operator==(const Vector2D& src) const
 {
@@ -98,10 +78,6 @@ bool Vector2D::operator!=(const Vector2D& src) const
 }
 
 
-//-----------------------------------------------------------------------------
-// Copy
-//-----------------------------------------------------------------------------
-
 void Vector2DCopy(const Vector2D& src, Vector2D& dst)
 {
 	dst.x = src.x;
@@ -112,10 +88,6 @@ void Vector2D::CopyToArray(float* rgfl) const
 {
 	rgfl[0] = x; rgfl[1] = y;
 }
-
-//-----------------------------------------------------------------------------
-// standard Math operations
-//-----------------------------------------------------------------------------
 
 void Vector2D::Negate()
 {
@@ -166,8 +138,6 @@ void Vector2DMA(const Vector2D& start, float s, const Vector2D& dir, Vector2D& r
 	result.y = start.y + s * dir.y;
 }
 
-// FIXME: Remove
-// For backwards compatability
 void Vector2D::MulAdd(const Vector2D& a, const Vector2D& b, float scalar)
 {
 	x = a.x + b.x * scalar;
@@ -180,15 +150,11 @@ void Vector2DLerp(const Vector2D& src1, const Vector2D& src2, vec_t t, Vector2D&
 	dest[1] = src1[1] + (src2[1] - src1[1]) * t;
 }
 
-//-----------------------------------------------------------------------------
-// dot, cross
-//-----------------------------------------------------------------------------
 vec_t DotProduct2D(const Vector2D& a, const Vector2D& b)
 {
 	return(a.x * b.x + a.y * b.y);
 }
 
-// for backwards compatability
 vec_t Vector2D::Dot(const Vector2D& vOther) const
 {
 	return DotProduct2D(*this, vOther);
@@ -206,9 +172,6 @@ vec_t Vector2DNormalize(Vector2D& v)
 	return l;
 }
 
-//-----------------------------------------------------------------------------
-// length
-//-----------------------------------------------------------------------------
 vec_t Vector2DLength(const Vector2D& v)
 {
 	return (vec_t)sqrt(v.x * v.x + v.y * v.y);
@@ -248,9 +211,6 @@ void Vector2DMax(const Vector2D& a, const Vector2D& b, Vector2D& result)
 	result.y = (a.y > b.y) ? a.y : b.y;
 }
 
-//-----------------------------------------------------------------------------
-// Computes the closest point to vecTarget no farther than flMaxDist from vecStart
-//-----------------------------------------------------------------------------
 void ComputeClosestPoint2D(const Vector2D& vecStart, float flMaxDist, const Vector2D& vecTarget, Vector2D* pResult)
 {
 	Vector2D vecDelta;
@@ -265,9 +225,6 @@ void ComputeClosestPoint2D(const Vector2D& vecStart, float flMaxDist, const Vect
 	}
 }
 
-//-----------------------------------------------------------------------------
-// Returns a Vector2D with the min or max in X, Y, and Z.
-//-----------------------------------------------------------------------------
 
 Vector2D Vector2D::Min(const Vector2D& vOther) const
 {
@@ -279,10 +236,6 @@ Vector2D Vector2D::Max(const Vector2D& vOther) const
 	return Vector2D(x > vOther.x ? x : vOther.x, y > vOther.y ? y : vOther.y);
 }
 
-
-//-----------------------------------------------------------------------------
-// arithmetic operations
-//-----------------------------------------------------------------------------
 
 Vector2D Vector2D::operator-(void) const
 {

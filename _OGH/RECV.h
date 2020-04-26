@@ -24,32 +24,16 @@ class RecvProp;
 class CRecvProxyData
 {
 public:
-	const RecvProp* m_pRecvProp;        // The property it's receiving.
-	DVariant		    m_Value;            // The value given to you to store.
-	int				    m_iElement;         // Which array element you're getting.
-	int				    m_ObjectID;         // The object being referred to.
+	const RecvProp* m_pRecvProp;     
+	DVariant		    m_Value;     
+	int				    m_iElement;  
+	int				    m_ObjectID;  
 };
 
-//-----------------------------------------------------------------------------
-// pStruct = the base structure of the datatable this variable is in (like C_BaseEntity)
-// pOut    = the variable that this this proxy represents (like C_BaseEntity::m_SomeValue).
-//
-// Convert the network-standard-type value in m_Value into your own format in pStruct/pOut.
-//-----------------------------------------------------------------------------
 typedef void(*RecvVarProxyFn)(const CRecvProxyData* pData, void* pStruct, void* pOut);
 
-// ------------------------------------------------------------------------ //
-// ArrayLengthRecvProxies are optionally used to Get the length of the 
-// incoming array when it changes.
-// ------------------------------------------------------------------------ //
 typedef void(*ArrayLengthRecvProxyFn)(void* pStruct, int objectID, int currentArrayLength);
 
-// NOTE: DataTable receive proxies work differently than the other proxies.
-// pData points at the object + the recv table's offset.
-// pOut should be Set to the location of the object to unpack the data table into.
-// If the parent object just contains the child object, the default proxy just does *pOut = pData.
-// If the parent object points at the child object, you need to dereference the pointer here.
-// NOTE: don't ever return null from a DataTable receive proxy function. Bad things will happen.
 typedef void(*DataTableRecvVarProxyFn)(const RecvProp* pProp, void** pOut, void* pData, int objectID);
 
 class RecvProp

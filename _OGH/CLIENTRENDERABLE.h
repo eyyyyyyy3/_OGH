@@ -19,10 +19,8 @@ public:
 
 	virtual bool ShouldDraw(void) = 0;
 
-	virtual int GetRenderFlags(void) = 0; // ERENDERFLAGS_xxx
-	virtual void Unused(void) const
-	{
-	}
+	virtual int GetRenderFlags(void) = 0;
+	virtual void Unused(void) const {}
 
 	virtual HANDLE GetShadowHandle() const = 0;
 
@@ -30,7 +28,7 @@ public:
 
 	virtual const model_t* GetModel() const = 0;
 
-	virtual int DrawModel(int flags, const int /*RenderableInstance_t*/& instance) = 0;
+	virtual int DrawModel(int flags, const int & instance) = 0;
 
 	virtual int GetBody() = 0;
 
@@ -42,19 +40,19 @@ public:
 
 	virtual void DoAnimationEvents(void) = 0;
 
-	virtual void* /*IPVSNotify*/ GetPVSNotifyInterface() = 0;
+	virtual void* GetPVSNotifyInterface() = 0;
 
 	virtual void GetRenderBounds(Vector& mins, Vector& maxs) = 0;
 
 	virtual void GetRenderBoundsWorldspace(Vector& mins, Vector& maxs) = 0;
 
-	virtual void GetShadowRenderBounds(Vector& mins, Vector& maxs, int /*ShadowType_t*/ shadowType) = 0;
+	virtual void GetShadowRenderBounds(Vector& mins, Vector& maxs, int shadowType) = 0;
 
 	virtual bool ShouldReceiveProjectedTextures(int flags) = 0;
 
-	virtual bool GetShadowCastDistance(float* pDist, int /*ShadowType_t*/ shadowType) const = 0;
+	virtual bool GetShadowCastDistance(float* pDist, int shadowType) const = 0;
 
-	virtual bool GetShadowCastDirection(Vector* pDirection, int /*ShadowType_t*/ shadowType) const = 0;
+	virtual bool GetShadowCastDirection(Vector* pDirection, int shadowType) const = 0;
 
 	virtual bool IsShadowDirty() = 0;
 
@@ -66,7 +64,7 @@ public:
 
 	virtual ClientRenderable* NextShadowPeer() = 0;
 
-	virtual int /*ShadowType_t*/ ShadowCastType() = 0;
+	virtual int ShadowCastType() = 0;
 
 	virtual void CreateModelInstance() = 0;
 

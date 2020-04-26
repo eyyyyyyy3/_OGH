@@ -15,5 +15,5 @@ public:
 	virtual void             LevelInitPreEntity(char const* pMapName) = 0;
 	virtual void             LevelInitPostEntity() = 0;
 	virtual void             LevelShutdown(void) = 0;
-	virtual ClientClass* GetAllClasses(void) = 0;
+	virtual ClientClass*	 GetAllClasses(void) = 0;
 };
