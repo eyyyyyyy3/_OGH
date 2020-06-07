@@ -2,7 +2,7 @@
 #include "InterfaceTools.h"
 void NetVarManager::Initialize()
 {
-	BaseClientDLL* nvminterface = (BaseClientDLL*)newInterface->GetInterface((char*)"client_panorama.dll", (char*)"VClient018");
+	BaseClientDLL* nvminterface = (BaseClientDLL*)newInterface->GetInterface((char*)"client.dll", (char*)"VClient018");
 	m_tables.clear();
 
 	ClientClass* clientClass = nvminterface->GetAllClasses();

@@ -263,7 +263,7 @@ void __fastcall Hooked_LockCursor(Surface* thisptr, void* edx)
 DWORD WINAPI MainThread(LPVOID param) // our main thread
 {
 	var.oWndProc = (WNDPROC)SetWindowLongPtr(FindWindowA("Valve001", nullptr), GWL_WNDPROC, (LONG)(LONG_PTR)WndProc);
-	clientModeInterface = (BaseClientDLL*)newInterface->GetInterface((char*)"client_panorama.dll", (char*)"VClient018");
+	clientModeInterface = (BaseClientDLL*)newInterface->GetInterface((char*)"client.dll", (char*)"VClient018");
 
 
 	d3d9device = **(IDirect3DDevice9***)(memory.FindPattern((char*)"shaderapidx9.dll", "\xA1\x00\x00\x00\x00\x50\x8B\x08\xFF\x51\x0C", "x????xxxxxx") + 0x1);
@@ -272,8 +272,8 @@ DWORD WINAPI MainThread(LPVOID param) // our main thread
 	eng = (Engine*)newInterface->GetInterface((char*)"engine.dll", (char*)"VEngineClient014");
 	clientMode = **(ClientMode***)((*(uintptr_t**)clientModeInterface)[10] + 0x5);
 	panel = (Panel*)newInterface->GetInterface((char*)"vgui2.dll", (char*)"VGUI_Panel009");
-	entlist = (ClientEntityList*)newInterface->GetInterface((char*)"client_panorama.dll", (char*)"VClientEntityList003");
-	g_Input = *(Input**)(memory.FindPattern((char*)"client_panorama.dll", "\xB9\x00\x00\x00\x00\xF3\x0F\x11\x04\x24\xFF\x50\x10", "x????xxxxxxxx") + 1);
+	entlist = (ClientEntityList*)newInterface->GetInterface((char*)"client.dll", (char*)"VClientEntityList003");
+	g_Input = *(Input**)(memory.FindPattern((char*)"client.dll", "\xB9\x00\x00\x00\x00\xF3\x0F\x11\x04\x24\xFF\x50\x10", "x????xxxxxxxx") + 1);
 
 	GetNetVars();
 

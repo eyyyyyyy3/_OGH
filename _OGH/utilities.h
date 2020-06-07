@@ -333,6 +333,7 @@ void Updater()
 	if (eng->IsConnected() && eng->IsInGame() && var.ftmemoryreducer == true)
 	{
 		me = (BaseEntity*)entlist->GetClientEntity(eng->GetLocalPlayer());
+		std:: cout << std::hex << me << std::endl;
 		eng->GetScreenSize(var.w, var.h);
 		var.ftmemoryreducer = false;
 	}
